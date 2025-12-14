@@ -3,7 +3,7 @@ AiTravelAssistant %
 
 `streamlit run src/app.py`
 
-### Start FE
+### Start BE
 AiTravelAssistant %  
 
 `uvicorn src.main:app --reload`
