@@ -2,13 +2,14 @@ from fastapi import FastAPI, UploadFile
 from contextlib import asynccontextmanager
 from pydantic import BaseModel
 from src.ingest import ingest_pdf
+from src.retriever import retrieve_docs
+from src.vectorstores import init_qdrant
 
 #  AiTravelAssistant % uvicorn src.main:app --reload
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Initialize resources here (e.g., database connections, models)
-    # Initialize Qdrant database
     print("Initializing Qdrant database...")
+    init_qdrant()
     print("Database initialization complete.")
     yield
 
@@ -21,7 +22,8 @@ class QueryRequest(BaseModel):
 
 @app.post("/ask")
 async def ask_question(req: QueryRequest):
-    return {"response": "resp"}
+    res = retrieve_docs(req.query)
+    return {"response": res}
 
 
 @app.post("/upload")

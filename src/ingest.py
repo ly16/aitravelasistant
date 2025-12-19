@@ -1,10 +1,10 @@
 from fastapi import UploadFile
 import pymupdf as fitz
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.docstore.document import Document
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_core.documents import Document
 from src.config import COLLECTION_NAME
 from src.embeddings import get_embeddings
-
+from src.vectorstores import get_qdrant_client
 
 async def ingest_pdf(file: UploadFile):
     print(f"📄 Processing PDF file: {file.filename}")
@@ -35,7 +35,6 @@ async def ingest_pdf(file: UploadFile):
     print("🧮 Generating embeddings...")
     texts = [chunk.page_content for chunk in chunks]
     embeddings = get_embeddings(texts)
-    return embeddings
 
     # Get the Qdrant client
     client = get_qdrant_client()
