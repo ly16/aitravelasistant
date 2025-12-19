@@ -1,8 +1,8 @@
 from fastapi import FastAPI, UploadFile
 from contextlib import asynccontextmanager
 from pydantic import BaseModel
+from src.generator import generate_answer
 from src.ingest import ingest_pdf
-from src.retriever import retrieve_docs
 from src.vectorstores import init_qdrant
 
 #  AiTravelAssistant % uvicorn src.main:app --reload
@@ -22,7 +22,7 @@ class QueryRequest(BaseModel):
 
 @app.post("/ask")
 async def ask_question(req: QueryRequest):
-    res = retrieve_docs(req.query)
+    res = generate_answer(req.query)
     return {"response": res}
 
 
