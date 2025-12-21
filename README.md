@@ -30,7 +30,7 @@ PDF → Text Extraction → Chunking → Embeddings → Qdrant → Retrieval →
    The backend extracts text from the PDF and splits it into semantically meaningful chunks.
 
 3. **Embedding Generation**
-   Each text chunk is converted into a vector embedding using a Hugging Face embedding model.
+   Each text chunk is converted into a vector embedding using Qdrant.
 
 4. **Vector Storage (Qdrant)**
    Embeddings and metadata are stored in Qdrant Cloud for efficient similarity search.
@@ -47,8 +47,8 @@ PDF → Text Extraction → Chunking → Embeddings → Qdrant → Retrieval →
 
 * **Frontend**: [Streamlit](https://streamlit.io/)
 * **Backend**: [FastAPI](https://fastapi.tiangolo.com/)
-* **Vector Database**: [Qdrant Cloud](https://qdrant.tech/)
-* **LLM & Embeddings**: [Hugging Face](https://huggingface.co/)
+* **Embeddings & Vector Database**: [Qdrant Cloud](https://qdrant.tech/)
+* **LLM**: [Hugging Face](https://huggingface.co/)
 
 ---
 
@@ -63,7 +63,7 @@ AiTravelAssistant/
 │   ├── Embeddings.py       # convert text to embeddings
 │   ├── generator.py        # generate final answer
 │   ├── ingest.py           # read and extract from pdf
-│   └── retrievers.py       # retrieve relvant info stored in DB previous             
+│   └── retrievers.py       # retrieve relevant info stored in DB previously             
 ├── requirements.txt
 ├── .env
 └── README.md
@@ -142,14 +142,6 @@ POST /query
 ---
 
 ## 🖼 Screenshots
+<img width="790" height="464" alt="Screenshot 2025-12-19 at 11 14 08 AM" src="https://github.com/user-attachments/assets/7a6fdc78-a46f-4b45-9e93-b70fe82ac0a6" />
 
-
----
-
-## 🙌 Acknowledgements
-
-* Hugging Face
-* Qdrant
-* Streamlit
-* FastAPI
-
+<img width="1431" height="538" alt="Screenshot 2025-12-19 at 11 14 55 AM" src="https://github.com/user-attachments/assets/91eeded9-4978-411e-a84d-7007216e4c1d" />
